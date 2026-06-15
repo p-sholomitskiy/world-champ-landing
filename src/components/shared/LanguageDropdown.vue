@@ -22,6 +22,10 @@ const selectedLanguage = computed(
   () => LANGUAGES.find((language) => language.code === props.modelValue) ?? LANGUAGES[0],
 )
 
+const availableLanguages = computed(() =>
+  LANGUAGES.filter((language) => language.code !== props.modelValue),
+)
+
 function toggle() {
   isOpen.value = !isOpen.value
 }
@@ -78,15 +82,14 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
 
     <ul v-if="isOpen" class="language-dropdown__menu" role="listbox">
       <li
-        v-for="language in LANGUAGES"
+        v-for="language in availableLanguages"
         :key="language.code"
         role="option"
-        :aria-selected="language.code === modelValue"
+        aria-selected="false"
       >
         <button
           type="button"
           class="language-dropdown__option"
-          :class="{ 'language-dropdown__option--active': language.code === modelValue }"
           @click="select(language.code)"
         >
           <img class="language-dropdown__flag" :src="language.flag" :alt="language.label" />
@@ -112,28 +115,48 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
   padding: 9px 8px;
   border: none;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.35);
   color: #fff;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .language-dropdown__trigger {
   justify-content: center;
+  background: #262b3b;
+}
+
+.language-dropdown__trigger:hover {
+  background: #424557;
+}
+
+.language-dropdown__trigger[aria-expanded='true'] {
+  background: #25f56c;
 }
 
 .language-dropdown__menu {
-  margin: 4px 0 0;
-  padding: 0;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100px;
+  height: auto;
+  margin: 0;
+  padding: 12px;
+  border-radius: 15px;
+  background: #171925;
   list-style: none;
 }
 
 .language-dropdown__option {
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: #262b3b;
 }
 
-.language-dropdown__option--active {
-  background: rgba(255, 255, 255, 0.12);
+.language-dropdown__option:hover {
+  background: #424557;
 }
 
 .language-dropdown__flag {

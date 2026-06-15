@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import casinoLogo from '@/assets/mobile/casino-logo.svg'
 import ClaimTheBonus from '@/components/shared/ClaimTheBonus.vue'
 import LanguageDropdown from '@/components/shared/LanguageDropdown.vue'
 import type { LanguageCode } from '@/constants/languages'
+import { LANDING_TEXTS } from '@/constants/texts'
 
 const language = defineModel<LanguageCode>({ default: 'ru' })
+const texts = computed(() => LANDING_TEXTS[language.value])
 </script>
 
 <template>
@@ -13,7 +16,7 @@ const language = defineModel<LanguageCode>({ default: 'ru' })
       <img class="mobile-header__logo" :src="casinoLogo" alt="Casino" />
       <LanguageDropdown v-model="language" />
     </div>
-    <ClaimTheBonus class="mobile-header__bonus">Claim the bonus</ClaimTheBonus>
+    <ClaimTheBonus class="mobile-header__bonus">{{ texts.claimBonus }}</ClaimTheBonus>
   </header>
 </template>
 
@@ -34,7 +37,7 @@ const language = defineModel<LanguageCode>({ default: 'ru' })
 
 .mobile-header__top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }

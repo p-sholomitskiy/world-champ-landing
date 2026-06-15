@@ -51,6 +51,7 @@ const emit = defineEmits<{
   margin: 0;
   font-family: 'Gilroy-HeavyItalic', sans-serif;
   font-weight: 400;
+  font-style: italic;
   font-size: 24px;
   line-height: 100%;
   letter-spacing: 0;
@@ -63,6 +64,7 @@ const emit = defineEmits<{
   leading-trim: both;
   text-box-trim: cap;
   text-box-edge: cap alphabetic;
+  white-space: pre-line;
 }
 
 .cta-block__button {
@@ -79,6 +81,7 @@ const emit = defineEmits<{
   color: #000;
   font-family: 'Gilroy-Bold', sans-serif;
   font-weight: 400;
+  font-style: normal;
   font-size: 12px;
   line-height: 100%;
   letter-spacing: 0;

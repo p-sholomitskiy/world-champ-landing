@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import background from '@/assets/mobile/background.svg'
 import MobileHeader from '@/components/mobile/MobileHeader.vue'
 import CtaBlock from '@/components/shared/CtaBlock.vue'
 import type { LanguageCode } from '@/constants/languages'
+import { LANDING_TEXTS } from '@/constants/texts'
 
 const language = ref<LanguageCode>('ru')
+const texts = computed(() => LANDING_TEXTS[language.value])
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const language = ref<LanguageCode>('ru')
     <img class="landing__background" :src="background" alt="" aria-hidden="true" />
     <MobileHeader v-model="language" />
     <div class="landing__cta">
-      <CtaBlock button-text="Play now">Bonus 500%</CtaBlock>
+      <CtaBlock :button-text="texts.grab">{{ texts.bonus }}</CtaBlock>
     </div>
     <div class="landing__content" />
   </section>
@@ -37,11 +39,12 @@ const language = ref<LanguageCode>('ru')
 
 .landing__cta {
   position: absolute;
-  top: 518px;
-  left: 20px;
+  bottom: 70px;
+  left: 50%;
   z-index: 10;
   width: 343px;
   max-width: calc(100% - 40px);
+  transform: translateX(-50%);
 }
 
 .landing__content {
