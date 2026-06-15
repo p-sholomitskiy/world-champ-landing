@@ -1,22 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import background from '@/assets/desktop/background.svg'
 import casinoLogo from '@/assets/desktop/casino-logo.svg'
+import CtaBlock from '@/components/shared/CtaBlock.vue'
 import LanguageDropdown from '@/components/shared/LanguageDropdown.vue'
 import type { LanguageCode } from '@/constants/languages'
+import { LANDING_TEXTS } from '@/constants/texts'
+import ClaimTheBonus from '../shared/ClaimTheBonus.vue'
 
 const language = ref<LanguageCode>('ru')
+const texts = computed(() => LANDING_TEXTS[language.value])
 </script>
 
 <template>
   <section class="landing">
     <img class="landing__background" :src="background" alt="" aria-hidden="true" />
-    <div class="landing__header">
-      <LanguageDropdown v-model="language" />
-    </div>
-    <div class="landing__content">
+    <header class="landing__header">
       <img class="landing__logo" :src="casinoLogo" alt="Casino" />
+      <LanguageDropdown v-model="language" />
+    </header>
+    <div class="landing__claim-the-bonus">
+      <ClaimTheBonus>{{ texts.claimBonus }}</ClaimTheBonus>
     </div>
+    <div class="landing__cta">
+      <CtaBlock :button-text="texts.grab">{{ texts.bonus }}</CtaBlock>
+    </div>
+    <div class="landing__content" />
   </section>
 </template>
 
@@ -39,23 +48,66 @@ const language = ref<LanguageCode>('ru')
 .landing__content {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100dvh;
-  padding: 40px;
 }
 
 .landing__logo {
-  width: min(100%, 420px);
-  height: auto;
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  width: 288px;
+  height: 48px;
+  transform: translateX(-50%);
 }
 
 .landing__header {
   position: absolute;
   z-index: 10;
-  top: 20px;
-  left: 20px;
+  inset: 0 0 auto;
+  min-height: 85px;
+  pointer-events: none;
+}
+
+.landing__header :deep(.language-dropdown) {
+  position: absolute;
+  top: 48px;
+  right: 137px;
+  pointer-events: auto;
+}
+
+.landing__cta {
+  position: absolute;
+  bottom: 74px;
+  left: 50%;
+  z-index: 10;
+  width: 517px;
+  height: 126px;
+  transform: translateX(-50%);
+}
+
+.landing__cta :deep(.cta-block__title) {
+  font-size: 32px;
+}
+
+.landing__cta :deep(.cta-block) {
+  width: 517px;
+  height: 126px;
+  max-width: 100%;
+}
+
+.landing__cta :deep(.cta-block__button) {
+  width: 167px;
+  height: 38px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.landing__claim-the-bonus {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 190px;
+  z-index: 11;
 }
 </style>

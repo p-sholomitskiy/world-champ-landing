@@ -20,7 +20,7 @@ withDefaults(
 <style scoped>
 .claim-the-bonus {
   --bonus-border-width: 2.1px;
-  --bonus-glass-opacity: 0.90;
+  --bonus-glass-opacity: 0.96;
   --bonus-glass-blur: 100px;
 
   position: relative;

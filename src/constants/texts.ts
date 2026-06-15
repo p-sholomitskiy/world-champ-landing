@@ -12,7 +12,7 @@ export const LANDING_TEXTS = {
     grab: 'Al',
   },
   uz: {
-    claimBonus: 'Hoziroq',
+    claimBonus: 'Hoziroq oling',
     bonus: '30€\nFreebet',
     grab: "Olish",
   },
