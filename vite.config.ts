@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/world-champ-landing/',
   plugins: [vue()],
   resolve: {
     alias: {
