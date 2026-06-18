@@ -4,8 +4,6 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  //TODO: delete base after final release
-  base: '/world-champ-landing/',
   plugins: [vue()],
   resolve: {
     alias: {
