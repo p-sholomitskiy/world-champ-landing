@@ -15,7 +15,7 @@ const texts = computed(() => LANDING_TEXTS[language.value])
     <img class="landing__background" :src="background" alt="" aria-hidden="true" />
     <MobileHeader v-model="language" />
     <div class="landing__cta">
-      <CtaBlock :button-text="texts.grab">{{ texts.bonus }}</CtaBlock>
+      <CtaBlock :button-text="texts.grab" :title-font-size-in-px="texts.bonusFontSizeMobile">{{ texts.bonus }}</CtaBlock>
     </div>
     <div class="landing__content" />
   </section>

@@ -23,7 +23,7 @@ const texts = computed(() => LANDING_TEXTS[language.value])
       <ClaimTheBonus>{{ texts.claimBonus }}</ClaimTheBonus>
     </div>
     <div class="landing__cta">
-      <CtaBlock :button-text="texts.grab">{{ texts.bonus }}</CtaBlock>
+      <CtaBlock :button-text="texts.grab" :title-font-size-in-px="texts.bonusFontSizeDesktop">{{ texts.bonus }}</CtaBlock>
     </div>
     <div class="landing__content" />
   </section>
