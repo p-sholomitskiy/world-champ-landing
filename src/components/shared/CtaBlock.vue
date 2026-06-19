@@ -2,11 +2,13 @@
 withDefaults(
   defineProps<{
     as?: string
-    buttonText?: string
+    buttonText?: string,
+    titleFontSizeInPx: number
   }>(),
   {
     as: 'div',
     buttonText: 'Play now',
+    titleFontSizeInPx: 16,
   },
 )
 
@@ -17,7 +19,7 @@ const emit = defineEmits<{
 
 <template>
   <component :is="as" class="cta-block">
-    <p class="cta-block__title">
+    <p class="cta-block__title" :style="`font-size: ${titleFontSizeInPx}px`">
       <slot />
     </p>
     <button type="button" class="cta-block__button" @click="emit('click')">
